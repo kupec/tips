@@ -1,0 +1,11 @@
+# list of all vms
+vboxmanage list vms
+
+# list of running vms
+vboxmanage list runningvms
+
+# close vm and save state
+vboxmanage controlvm NAME_OR_UUID savestate
+
+# run vm
+vboxmanage startvm NAME_OR_UUID
