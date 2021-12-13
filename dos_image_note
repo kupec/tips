@@ -1,0 +1,7 @@
+entrypoint = 0x200 + (cs << 4) + ip
+0x200 is header size * 0x10
+ds:dx = 12:34 is 0x200 + 0x120 + 0x34 
+relocated segment = segment + runtime relocation offset
+segment = 0 is 0x200 in binary
+relocated entry = address of byte. This byte += runtime relocation offset when loading image
+psp_seg = start_seg - 0x10
