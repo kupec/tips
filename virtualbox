@@ -9,3 +9,6 @@ vboxmanage controlvm NAME_OR_UUID savestate
 
 # run vm
 vboxmanage startvm NAME_OR_UUID
+
+# sign vbox kernel modules
+find $(dirname $(modinfo -n vboxdrv)) -name "*.ko" -exec sudo kmodsign sha512 $CERT_PATH/MOK.priv $CERT_PATH/MOK.der {} \;
