@@ -1,0 +1,14 @@
+# Cut vertical mobile video from horizontal one
+ffmpeg -i input.mov -vf "crop=ih/16*9:ih:(iw-ow)/2:0,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,scale='trunc(ih*dar):ih',setsar=1/1" -movflags faststart -c:v libx264 -profile:v baseline -pix_fmt yuv420p -r 29.97 -c:a aac -y output.mp4
+
+# wav to mp3 with ffmpeg saving much quality
+ffmpeg -i input.wav -c:a libmp3lame -b:a 320k output.mp3
+
+# ffprobe show keyframes
+ffprobe -loglevel error -skip_frame nokey -select_streams v:0 -show_entries frame=pkt_pts_time -of csv=print_section=0 FILE
+
+# raspberry pi ffmpeg with gpu
+sudo apt install libomxil-bellagio-dev
+git clone https://github.com/FFmpeg/FFmpeg.git ffmpeg
+cd ffmpeg
+./configure --arch=armel --target-os=linux --enable-gpl --enable-nonfree --enable-mmal --enable-omx --enable-omx-rpi 
