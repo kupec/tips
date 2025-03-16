@@ -1,14 +1,14 @@
 rm -rf temp
 mkdir -p temp
 
-PPI=${1:-300}
+PPI=${PPI:-300}
 A4_WIDTH=210
 A4_HEIGHT=297
 
 let "IMAGE_WIDTH=PPI*A4_WIDTH*10/254"
 let "IMAGE_HEIGHT=PPI*A4_HEIGHT*10/254"
 
-for IMG in *.jpg; do
+for IMG in "$@"; do
     convert $IMG \
         -auto-orient \
         -resize "${IMAGE_WIDTH}x${IMAGE_HEIGHT}>" \
